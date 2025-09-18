@@ -1,17 +1,25 @@
-from typing import Any, Dict, List
-from pydantic import BaseModel
+from dataclasses import dataclass
+from typing import Iterable, Literal, List
 
-class ProviderCaps(BaseModel):
-    name: str
-    supports_cofog_levels: List[int]
-    # Add more capability fields as needed
+Level = Literal[1, 2, 3]
+
+@dataclass(frozen=True)
+class ProviderCaps:
+    min_year: int
+    max_year: int
+    max_level: Level
+    units: List[str]
 
 class ProviderAdapter:
-    def capabilities(self) -> ProviderCaps:
+    name: str
+    dataset_id_functions: str
+    dataset_id_totals: str
+
+    async def capabilities(self, geo: str) -> ProviderCaps:
         raise NotImplementedError()
 
-    def fetch_functions(self, *args, **kwargs) -> Any:
+    async def fetch_functions(self, geo: str, year: int, level: Level) -> Iterable[dict]:
         raise NotImplementedError()
 
-    def fetch_totals(self, *args, **kwargs) -> Any:
+    async def fetch_totals(self, geo: str, year: int) -> Iterable[dict]:
         raise NotImplementedError()

@@ -19,3 +19,6 @@ test:
 
 hello:
 	$(PYTHON) src/etl/hello_world.py
+
+coverage:
+	$(PYTHON) src/cli.py build-coverage
