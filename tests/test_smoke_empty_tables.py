@@ -1,5 +1,4 @@
 import duckdb
-import os
 
 def test_empty_tables_exist():
     db_path = "local.duckdb"
