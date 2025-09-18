@@ -1,0 +1,12 @@
+{
+  "name": "world-spending-perspective",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": []
+    }
+  },
+  "postCreateCommand": "make bootstrap"
+}
