@@ -1,5 +1,5 @@
 import duckdb
-from src.coverage.build_coverage_registry import build_coverage_registry
+from cofogviz.coverage.build_coverage_registry import build_coverage_registry
 
 def test_build_coverage_registry():
     db_path = "test.duckdb"

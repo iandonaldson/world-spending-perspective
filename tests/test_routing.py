@@ -1,5 +1,5 @@
 import pytest
-from src.routing.choose_source import choose_source, ProviderCaps, NoDataError
+from cofogviz.routing.choose_source import choose_source, ProviderCaps, NoDataError
 
 def test_choose_source():
     coverage = {

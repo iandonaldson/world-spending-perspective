@@ -17,7 +17,8 @@ venv:
 
 # Install dev deps. Prefer pyproject extras `.[dev]`; fallback to requirements-dev.txt if present
 install-dev:
-	-$(PYTHON) -m pip install -e ".[dev]"
+	-$(PYTHON) -m pip install -e ".[dev]" # will install dependencies specified in .dev section of pyproject.toml
+	# requirements-dev.txt is optional; if it exists, install from it as well
 	@if [ -f requirements-dev.txt ]; then $(PIP) install -r requirements-dev.txt; fi
 
 # Ensure the package itself is installed in editable mode even if no [dev] extra exists
@@ -29,7 +30,7 @@ import-check:
 	echo "import importlib; m = importlib.import_module(\"$(PACKAGE)\"); print(m.__name__)" | $(PYTHON)
 
 test:
-	$(PYTHON) -m pytest
+	PYTHONPATH=src $(PYTHON) -m pytest
 
 lint:
 	$(PYTHON) -m pytest --disable-warnings
