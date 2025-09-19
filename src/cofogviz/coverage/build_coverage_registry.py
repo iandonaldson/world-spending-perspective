@@ -1,7 +1,7 @@
 import duckdb
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Tuple
-from src.routing.choose_source import ProviderCaps
+from cofogviz.routing.choose_source import ProviderCaps
 
 def mock_provider_capabilities() -> Dict[Tuple[str, str], ProviderCaps]:
     return {
@@ -28,7 +28,7 @@ def build_coverage_registry(db_path: str):
     for (provider, geo), caps in coverage.items():
         con.execute(
             "INSERT INTO coverage_registry VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (provider, geo, caps.min_year, caps.max_year, caps.max_level, ",".join(caps.units), datetime.utcnow())
+            (provider, geo, caps.min_year, caps.max_year, caps.max_level, ",".join(caps.units), datetime.now(timezone.utc))
         )
 
     con.close()

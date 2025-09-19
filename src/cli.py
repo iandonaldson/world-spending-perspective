@@ -1,5 +1,5 @@
 import typer
-from src.coverage.build_coverage_registry import build_coverage_registry
+from cofogviz.coverage.build_coverage_registry import build_coverage_registry
 
 def main():
     app = typer.Typer()
