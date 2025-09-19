@@ -1,11 +1,10 @@
-
 import os
 import sys
 from datetime import datetime
 from dotenv import load_dotenv
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from src.codelists.loader import write_empty_cofog_codelist
-from src.coverage.registry import write_empty_coverage_registry
+from cofogviz.codelists.loader import write_empty_cofog_codelist
+from cofogviz.coverage.registry import write_empty_coverage_registry
 
 def main():
     load_dotenv()
